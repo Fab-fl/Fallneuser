@@ -1,5 +1,6 @@
 package com.fallenuser.falumod;
 
+import com.fallenuser.falumod.block.ModBlocks;
 import com.fallenuser.falumod.item.ModItems;
 import com.mojang.logging.LogUtils;
 import net.minecraftforge.common.MinecraftForge;
@@ -19,10 +20,12 @@ public class FallenUser {
 
   // Very Important Comment
   public FallenUser() {
-    IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-    ModItems.register(modEventBus);
+    IEventBus EventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
-    modEventBus.addListener(this::commonSetup);
+    ModItems.register(EventBus);
+    ModBlocks.register(EventBus);
+
+    EventBus.addListener(this::commonSetup);
 
     MinecraftForge.EVENT_BUS.register(this);
   }
